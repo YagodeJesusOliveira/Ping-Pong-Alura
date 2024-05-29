@@ -44,7 +44,7 @@ function draw() {
   colisaoMinhaRaqueteBiblioteca();
   colisaoMinhaRaqueteOponenteBiblioteca();
   Placar();
- 
+  pararjogo();
   vencedor();
 }
 
@@ -136,12 +136,19 @@ function vencedor(){
     text("P1 VENCEU", 300, 200);
     fill('white');
     textAlign(CENTER);
-    break;
 }
   if(p2Pontos >= 15){
     text("P2 VENCEU", 300, 200);
     fill('white');
     textAlign(CENTER);
+  }
+}
+
+function pararjogo(){
+  if(p1Pontos >= 15){
+    break;
+  }
+  if(p2Pontos >= 15){
     break;
   }
 }
