@@ -136,14 +136,12 @@ function vencedor(){
     text("P1 VENCEU", 300, 200);
     fill('white');
     textAlign(CENTER);
-    let velocidadeXBolinha = 0;
-    let velocidadeYBolinha = 0;
+    break;
 }
   if(p2Pontos >= 15){
     text("P2 VENCEU", 300, 200);
     fill('white');
     textAlign(CENTER);
-    let velocidadeXBolinha = 0;
-    let velocidadeYBolinha = 0;
+    break;
   }
 }
