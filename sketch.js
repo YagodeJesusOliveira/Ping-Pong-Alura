@@ -46,7 +46,6 @@ function draw() {
   Placar();
   pararjogo();
   vencedor();
-  bolinhaNaoFicaPresa();
 }
 
 function mostraBolinha() {
@@ -152,12 +151,5 @@ function pararjogo(){
   if(p2Pontos >= 15){
     break;
   }
-}
-
-
-function bolinhaNaoFicaPresa(){
-  //if (XBolinha - raio < 0){
-  //XBolinha = 23
-  //}
 }
 
