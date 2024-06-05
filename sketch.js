@@ -39,13 +39,11 @@ function draw() {
   movimentaJogador();
   mostraOponente();
   movimentaOponente();
-  //verificaColisaoRaquete();
- // verificaColisaoOponente();
-  colisaoMinhaRaqueteBiblioteca();
-  colisaoMinhaRaqueteOponenteBiblioteca();
+  verificaColisaoRaquete();
+  verificaColisaoOponente();
   Placar();
-  pararjogo();
   vencedor();
+  resetarBolinha();
 }
 
 function mostraBolinha() {
@@ -93,63 +91,54 @@ function movimentaOponente() {
 }
 
 function verificaColisaoRaquete() {
-  if (xBolinha - raio < xJogador + jogadorComprimento && yBolinha - raio < yJogador + jogadorAltura && yBolinha + raio > yJogador) {
+  if (
+    xBolinha - raio < xJogador + jogadorComprimento &&
+    yBolinha - raio < yJogador + jogadorAltura &&
+    yBolinha + raio > yJogador
+  ) {
     velocidadeXBolinha *= -1;
   }
 }
 
-function verificaColisaoOponente(){
-  if (xBolinha - raio < xOponente + oponenteComprimento && yBolinha - raio < yOponente + oponenteAltura && yBolinha + raio > yOponente){
-    velocidadeXBolinha *= 1;
- }
-}
-
-function colisaoMinhaRaqueteBiblioteca() {
-  colidiu = collideRectCircle(xJogador, yJogador, jogadorComprimento, jogadorAltura, xBolinha, yBolinha, raio);
-  if(colidiu) {
+function verificaColisaoOponente() {
+  if (
+    xBolinha + raio > xOponente &&
+    yBolinha - raio < yOponente + oponenteAltura &&
+    yBolinha + raio > yOponente
+  ) {
     velocidadeXBolinha *= -1;
   }
 }
 
-function colisaoMinhaRaqueteOponenteBiblioteca() {
-  colidiu = collideRectCircle(xOponente, yOponente, oponenteComprimento, oponenteAltura, xBolinha, yBolinha, raio);
-  if(colidiu) {
-    velocidadeXBolinha *= -1;
-  }
-} 
-
-function Placar(){
-  fill('white')
-  textSize(18)
+function Placar() {
+  fill('white');
+  textSize(18);
   text(p1Pontos, 280, 26);
   text(p2Pontos, 320, 26);
-  if(xBolinha > 590){
-    p1Pontos += 1
+  if (xBolinha > width) {
+    p1Pontos += 1;
+    resetarBolinha();
   }
-  if(xBolinha < 10){
-    p2Pontos += 1
-  }
-}
-
-function vencedor(){
-  if(p1Pontos >= 15){
-    text("P1 VENCEU", 300, 200);
-    fill('white');
-    textAlign(CENTER);
-}
-  if(p2Pontos >= 15){
-    text("P2 VENCEU", 300, 200);
-    fill('white');
-    textAlign(CENTER);
+  if (xBolinha < 0) {
+    p2Pontos += 1;
+    resetarBolinha();
   }
 }
 
-function pararjogo(){
-  if(p1Pontos >= 15){
-    break;
+function vencedor() {
+  if (p1Pontos >= 15) {
+    text('P1 VENCEU', 300, 200);
+    noLoop();
   }
-  if(p2Pontos >= 15){
-    break;
+  if (p2Pontos >= 15) {
+    text('P2 VENCEU', 300, 200);
+    noLoop();
   }
 }
 
+function resetarBolinha() {
+  xBolinha = width / 2;
+  yBolinha = height / 2;
+  velocidadeXBolinha *= -1;
+  velocidadeYBolinha *= random([-1, 1]);
+}
