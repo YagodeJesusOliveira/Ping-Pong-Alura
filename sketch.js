@@ -156,8 +156,8 @@ function pararjogo(){
 
 
 function bolinhaNaoFicaPresa(){
-  if (XBolinha - raio < 0){
-  XBolinha = 23
-  }
+  //if (XBolinha - raio < 0){
+  //XBolinha = 23
+  //}
 }
 
